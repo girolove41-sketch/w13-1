@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Picture Dictionary</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#f4f7fc;
+  color:#182b49;
+  font-family:Arial,"Noto Sans KR",sans-serif;
+}
+header{
+  background:#214f87;
+  color:white;
+  padding:22px 6%;
+}
+header h1{margin:0;font-size:27px}
+header p{margin:7px 0 0;color:#dceaff}
+main{
+  max-width:1250px;
+  margin:25px auto;
+  padding:0 18px;
+}
+.layout{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:22px;
+  align-items:start;
+}
+.panel{
+  background:white;
+  border-radius:17px;
+  padding:18px;
+  box-shadow:0 4px 18px #18345b12;
+}
+.scene{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  border-radius:13px;
+  background:#cce8ff;
+}
+.scene svg{width:100%;display:block}
+.hotspot{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  border:3px solid white;
+  border-radius:50%;
+  width:29px;height:29px;
+  background:#2678e9;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 2px 8px #18345b55;
+  font-size:12px;
+  transition:.2s;
+}
+.hotspot:hover,.hotspot.active{
+  background:#f49a32;
+  transform:translate(-50%,-50%) scale(1.3);
+}
+.instruction{
+  color:#63738b;
+  font-size:13px;
+  margin:12px 2px 0;
+}
+.word-card h2{
+  font-size:34px;
+  margin:12px 0 5px;
+  color:#183b70;
+}
+.ipa{
+  font-size:21px;
+  color:#4776ad;
+  margin-bottom:8px;
+}
+.meaning{
+  color:#2877d9;
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+.word-image{
+  background:#eef5ff;
+  border-radius:13px;
+  padding:15px;
+  text-align:center;
+  margin:12px 0;
+  font-size:75px;
+}
+.step{
+  margin:17px 0;
+  border-top:1px solid #edf0f5;
+  padding-top:15px;
+}
+.step-title{
+  font-weight:bold;
+  margin-bottom:10px;
+}
+button.action{
+  border:0;
+  padding:12px 18px;
+  border-radius:30px;
+  color:white;
+  background:#2679e8;
+  font-weight:bold;
+  cursor:pointer;
+  margin:3px 3px 3px 0;
+}
+button.record{background:#e95b4c}
+button.play{background:#64748b}
+button:disabled{opacity:.5;cursor:not-allowed}
+.tip{
+  background:#fff5df;
+  padding:14px;
+  border-radius:12px;
+  margin-top:15px;
+  line-height:1.6;
+  font-size:14px;
+}
+.examples{
+  margin-top:20px;
+  line-height:1.8;
+}
+.examples h3{font-size:17px}
+.example-ko{color:#728096;font-size:14px}
+.next{
+  width:100%;
+  margin-top:15px;
+  padding:14px;
+  border:0;
+  border-radius:30px;
+  background:#214f87;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.status{
+  font-size:13px;
+  color:#64748b;
+  margin-top:9px;
+  min-height:20px;
+}
+@media(max-width:760px){
+  .layout{grid-template-columns:1fr}
+  header h1{font-size:21px}
+  .word-card h2{font-size:29px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📖 English Picture Dictionary</h1>
+  <p>Click a picture and practice English pronunciation!</p>
+</header>
+
+<main>
+<div class="layout">
+
+  <section>
+    <div class="panel">
+      <h3>🏠 At Home</h3>
+      <div class="scene">
+        <!-- 집 그림: HTML에 포함된 SVG -->
+        <svg viewBox="0 0 700 500"
+             xmlns="http://www.w3.org/2000/svg">
+
+          <rect width="700" height="500" fill="#bde3ff"/>
+          <circle cx="600" cy="65" r="32" fill="#fff3a6"/>
+
+          <!-- 집 외벽 -->
+          <path d="M40 170 L350 15 L660 170 V465 H40Z"
+                fill="#f3c98b" stroke="#82552e" stroke-width="8"/>
+          <path d="M40 170 L350 15 L660 170"
+                fill="none" stroke="#8e5b32" stroke-width="13"/>
+
+          <!-- 내부 -->
+          <rect x="65" y="175" width="570" height="275"
+                fill="#fff1dc" stroke="#986a43" stroke-width="5"/>
+
+          <!-- 위층 구분 -->
+          <rect x="65" y="175" width="570" height="135"
+                fill="#fff4e6"/>
+          <path d="M65 310 H635" stroke="#9b704b" stroke-width="8"/>
+          <path d="M350 175 V310 M440 310 V450"
+                stroke="#9b704b" stroke-width="6"/>
+
+          <!-- 침실 -->
+          <rect x="90" y="240" width="145" height="55"
+                rx="7" fill="#83b6e8"/>
+          <rect x="100" y="230" width="55" height="25"
+                rx="7" fill="white"/>
+          <rect x="90" y="270" width="145" height="25"
+                fill="#477fbc"/>
+          <rect x="90" y="210" width="15" height="80"
+                fill="#c58e54"/>
+          <rect x="275" y="205" width="40" height="65"
+                fill="#a8d5ef" stroke="#fff" stroke-width="5"/>
+          <path d="M295 205 V270 M275 235 H315"
+                stroke="white" stroke-width="4"/>
+
+          <!-- 욕실 -->
+          <rect x="370" y="205" width="55" height="70"
+                rx="5" fill="#a7ddeb"/>
+          <path d="M370 205 H425 M397 205 V275"
+                stroke="white" stroke-width="4"/>
+          <rect x="465" y="245" width="42" height="25"
+                rx="10" fill="white"/>
+          <path d="M475 270 V290 H500 V270"
+                fill="#d9e6ee" stroke="#7892a7" stroke-width="3"/>
+
+          <!-- 거실 -->
+          <rect x="90" y="355" width="150" height="65"
+                rx="15" fill="#b6a2a0"/>
+          <rect x="105" y="340" width="120" height="50"
+                rx="12" fill="#e1c8b0"/>
+          <rect x="110" y="350" width="45" height="35"
+                rx="7" fill="#8baed0"/>
+          <rect x="165" y="350" width="45" height="35"
+                rx="7" fill="#8baed0"/>
+          <rect x="130" y="320" width="65" height="35"
+                fill="#513f37"/>
+          <rect x="136" y="325" width="53" height="25"
+                fill="#9ed2e9"/>
+          <rect x="275" y="390" width="85" height="12"
+                fill="#a66a3c"/>
+          <rect x="285" y="402" width="8" height="25"
+                fill="#80512f"/>
+          <rect x="340" y="402" width="8" height="25"
+                fill="#80512f"/>
+
+          <!-- 주방 -->
+          <rect x="450" y="355" width="150" height="65"
+                fill="#e8e4dc" stroke="#9b9b96" stroke-width="3"/>
+          <rect x="455" y="345" width="140" height="13"
+                fill="#aaa69c"/>
+          <rect x="470" y="365" width="40" height="45"
+                fill="#fafafa" stroke="#aaa" stroke-width="2"/>
+          <rect x="520" y="365" width="40" height="45"
+                fill="#fafafa" stroke="#aaa" stroke-width="2"/>
+          <rect x="565" y="310" width="50" height="115"
+                rx="4" fill="#c9d3d8" stroke="#6e8797" stroke-width="3"/>
+          <line x1="590" y1="310" x2="590" y2="425"
+                stroke="#8398a6" stroke-width="2"/>
+          <rect x="598" y="335" width="4" height="25" fill="#657a86"/>
+          <rect x="598" y="370" width="4" height="25" fill="#657a86"/>
+
+          <!-- 나무와 식물 -->
+          <rect x="15" y="420" width="25" height="50" fill="#80552d"/>
+          <circle cx="27" cy="395" r="35" fill="#6eae71"/>
+          <circle cx="15" cy="375" r="24" fill="#82bd78"/>
+          <circle cx="45" cy="375" r="25" fill="#599b63"/>
+
+          <!-- 문 -->
+          <rect x="600" y="350" width="35" height="100"
+                fill="#ad7142" stroke="#80512f" stroke-width="3"/>
+          <circle cx="625" cy="405" r="3" fill="#f7d66b"/>
+
+          <!-- 바닥 -->
+          <rect x="40" y="450" width="620" height="15"
+                fill="#c48d56"/>
+        </svg>
+
+        <!-- 클릭 가능한 사물 -->
+        <button class="hotspot" style="left:46%;top:76%"
+          data-word="refrigerator" aria-label="Refrigerator">●</button>
+        <button class="hotspot" style="left:47%;top:83%"
+          data-word="stove" aria-label="Stove">●</button>
+        <button class="hotspot" style="left:24%;top:75%"
+          data-word="sofa" aria-label="Sofa">●</button>
+        <button class="hotspot" style="left:24%;top:65%"
+          data-word="television" aria-label="Television">●</button>
+        <button class="hotspot" style="left:25%;top:48%"
+          data-word="bed" aria-label="Bed">●</button>
+        <button class="hotspot" style="left:66%;top:48%"
+          data-word="shower" aria-label="Shower">●</button>
+        <button class="hotspot" style="left:78%;top:48%"
+          data-word="desk" aria-label="Desk">●</button>
+      </div>
+      <p class="instruction">
+        💡 그림 속 파란 점을 클릭해 보세요.
+      </p>
+    </div>
+
+    <div class="panel examples">
+      <h3>💬 Example Sentences</h3>
+      <p id="example1">The refrigerator is in the kitchen.</p>
+      <p class="example-ko" id="translation1">
+        냉장고는 주방에 있습니다.
+      </p>
+      <p id="example2">Please open the refrigerator door.</p>
+      <p class="example-ko" id="translation2">
+        냉장고 문을 열어 주세요.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel word-card">
+    <h3>🔊 Listen and Repeat</h3>
+
+    <div class="word-image" id="emoji">🧊</div>
+
+    <h2 id="word">Refrigerator</h2>
+    <div class="ipa" id="ipa">/rɪˈfrɪdʒəreɪtər/</div>
+    <div class="meaning" id="meaning">냉장고</div>
+
+    <div class="step">
+      <div class="step-title">① Listen to the pronunciation</div>
+      <button class="action" onclick="speak()">
+        🔊 Listen
+      </button>
+    </div>
+
+    <div class="step">
+      <div class="step-title">② Record your pronunciation</div>
+      <button class="action record" id="recordBtn"
+        onclick="recordVoice()">
+        🎤 Start Recording
+      </button>
+      <p class="status" id="recordStatus">
+        마이크 버튼을 눌러 발음을 녹음하세요.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-title">③ Listen to your recording</div>
+      <button class="action play" id="playBtn"
+        onclick="playRecording()" disabled>
+        ▶ Play My Voice
+      </button>
+    </div>
+
+    <div class="tip">
+      💡 <strong>Pronunciation Tip</strong>
+      <p id="tip" style="margin-bottom:0">
+        Stress the third syllable.
+      </p>
+    </div>
+
+    <button class="next" onclick="nextWord()">
+      Next Word →
+    </button>
+    <p class="status" id="selectionStatus">
+      Select an object in the picture.
+    </p>
+  </section>
+
+</div>
+</main>
+
+<script>
+const words = {
+ refrigerator:{
+  ipa:"/rɪˈfrɪdʒəreɪtər/",
+  ko:"냉장고",emoji:"🧊",
+  tip:"Stress the second syllable: re-FRIG-er-a-tor.",
+  ex1:"The refrigerator is in the kitchen.",
+  ko1:"냉장고는 주방에 있습니다.",
+  ex2:"Please open the refrigerator door.",
+  ko2:"냉장고 문을 열어 주세요."
+ },
+ stove:{
+  ipa:"/stoʊv/",ko:"가스레인지",emoji:"🍳",
+  tip:"Keep the vowel sound long and clear.",
+  ex1:"My mother is cooking on the stove.",
+  ko1:"어머니는 가스레인지로 요리하고 계세요.",
+  ex2:"Turn off the stove, please.",
+  ko2:"가스레인지를 꺼 주세요."
+ },
+ sofa:{
+  ipa:"/ˈsoʊfə/",ko:"소파",emoji:"🛋️",
+  tip:"Stress the first syllable.",
+  ex1:"I like sitting on the sofa.",
+  ko1:"저는 소파에 앉는 것을 좋아해요.",
+  ex2:"The sofa is very comfortable.",
+  ko2:"그 소파는 매우 편안해요."
+ },
+ television:{
+  ipa:"/ˈtelɪvɪʒən/",ko:"텔레비전",emoji:"📺",
+  tip:"Stress the first syllable.",
+  ex1:"I watch television every evening.",
+  ko1:"저는 매일 저녁 텔레비전을 봐요.",
+  ex2:"Turn on the television.",
+  ko2:"텔레비전을 켜 주세요."
+ },
+ bed:{
+  ipa:"/bed/",ko:"침대",emoji:"🛏️",
+  tip:"Make a short, clear /e/ sound.",
+  ex1:"I go to bed at ten.",
+  ko1:"저는 10시에 잠자리에 들어요.",
+  ex2:"My bed is very comfortable.",
+  ko2:"제 침대는 매우 편안해요."
+ },
+ shower:{
+  ipa:"/ˈʃaʊər/",ko:"샤워기",emoji:"🚿",
+  tip:"Start with the /ʃ/ sound. Round your lips for /aʊ/.",
+  ex1:"I take a shower every morning.",
+  ko1:"저는 매일 아침 샤워해요.",
+  ex2:"The shower is in the bathroom.",
+  ko2:"샤워기는 욕실에 있어요."
+ },
+ desk:{
+  ipa:"/desk/",ko:"책상",emoji:"🪑",
+  tip:"Make a clear /e/ vowel sound.",
+  ex1:"My books are on the desk.",
+  ko1:"제 책들은 책상 위에 있어요.",
+  ex2:"I study at my desk.",
+  ko2:"저는 책상에서 공부해요."
+ }
+};
+
+let current="refrigerator";
+let mediaRecorder=null;
+let audioChunks=[];
+let recordingUrl=null;
+let recordingStream=null;
+let isRecording=false;
+
+function selectWord(name){
+ if(!words[name])return;
+ current=name;
+ const w=words[name];
+
+ document.getElementById("word").textContent=
+  name.charAt(0).toUpperCase()+name.slice(1);
+ document.getElementById("ipa").textContent=w.ipa;
+ document.getElementById("meaning").textContent=w.ko;
+ document.getElementById("emoji").textContent=w.emoji;
+ document.getElementById("tip").textContent=w.tip;
+ document.getElementById("example1").textContent=w.ex1;
+ document.getElementById("translation1").textContent=w.ko1;
+ document.getElementById("example2").textContent=w.ex2;
+ document.getElementById("translation2").textContent=w.ko2;
+
+ document.getElementById("selectionStatus").textContent=
+  "Selected: "+name;
+
+ document.querySelectorAll(".hotspot").forEach(btn=>{
+  btn.classList.toggle("active",btn.dataset.word===name);
+ });
+
+ if(recordingUrl){
+  URL.revokeObjectURL(recordingUrl);
+  recordingUrl=null;
+ }
+ document.getElementById("playBtn").disabled=true;
+ document.getElementById("recordStatus").textContent=
+  "새 단어의 발음을 녹음할 수 있습니다.";
+}
+
+document.querySelectorAll(".hotspot").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  selectWord(btn.dataset.word);
+ });
+});
+
+function speak(){
+ if(!("speechSynthesis" in window)){
+  alert("이 브라우저는 음성 재생을 지원하지 않습니다.");
+  return;
+ }
+ window.speechSynthesis.cancel();
+ const utterance=new SpeechSynthesisUtterance(current);
+ utterance.lang="en-US";
+ utterance.rate=0.85;
+ utterance.pitch=1;
+ const voices=window.speechSynthesis.getVoices();
+ const voice=voices.find(v=>v.lang==="en-US");
+ if(voice)utterance.voice=voice;
+ window.speechSynthesis.speak(utterance);
+}
+
+async function recordVoice(){
+ if(isRecording){
+  if(mediaRecorder && mediaRecorder.state==="recording"){
+   mediaRecorder.stop();
+  }
+  return;
+ }
+
+ if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+  alert("마이크 기능은 HTTPS 또는 localhost 환경에서 사용해 주세요.");
+  return;
+ }
+
+ try{
+  recordingStream=await navigator.mediaDevices.getUserMedia({
+   audio:true
+  });
+
+  audioChunks=[];
+  const options=MediaRecorder.isTypeSupported("audio/webm")
+   ? {mimeType:"audio/webm"} : {};
+
+  mediaRecorder=new MediaRecorder(recordingStream,options);
+
+  mediaRecorder.ondataavailable=e=>{
+   if(e.data.size>0)audioChunks.push(e.data);
+  };
+
+  mediaRecorder.onstop=()=>{
+   const blob=new Blob(audioChunks,{
+    type:mediaRecorder.mimeType || "audio/webm"
+   });
+
+   if(recordingUrl)URL.revokeObjectURL(recordingUrl);
+   recordingUrl=URL.createObjectURL(blob);
+
+   document.getElementById("playBtn").disabled=false;
+   document.getElementById("recordStatus").textContent=
+    "녹음 완료! 내 발음을 들어보세요.";
+
+   recordingStream.getTracks().forEach(track=>track.stop());
+   recordingStream=null;
+   isRecording=false;
+   document.getElementById("recordBtn").textContent=
+    "🎤 Record Again";
+  };
+
+  mediaRecorder.start();
+  isRecording=true;
+
+  document.getElementById("recordBtn").textContent=
+   "■ Stop Recording";
+  document.getElementById("recordStatus").textContent=
+   "녹음 중입니다. 단어를 말해 보세요.";
+
+ }catch(error){
+  alert("마이크 권한을 확인해 주세요.");
+  isRecording=false;
+ }
+}
+
+function playRecording(){
+ if(!recordingUrl)return;
+ const audio=new Audio(recordingUrl);
+ audio.play();
+}
+
+function nextWord(){
+ const list=Object.keys(words);
+ const index=list.indexOf(current);
+ selectWord(list[(index+1)%list.length]);
+}
+
+selectWord("refrigerator");
+</script>
+</body>
+</html>
